@@ -24,10 +24,53 @@ def crear_tabla_clientes():
         tipo_seguro VARCHAR(50),
         fecha_pago DATE,
         estado_pago VARCHAR(20),
-        observaciones TEXT
+        observaciones TEXT,
+        documentos,         
+        fecha_registro DATE DEFAULT CURRENT_DATE
     )
     """)
 
     conexion.commit()
     cursor.close()
     conexion.close()
+
+def insertar_cliente(nombre, dui, telefono, correo, tipo_seguro, fecha_pago, estado_pago, observaciones, documentos):
+    conexion = conectar_db()
+    cursor = conexion.cursor()
+
+    query = """
+    INSERT INTO clientes (
+        nombre,
+        dui,
+        telefono,
+        correo,
+        tipo_seguro,
+        fecha_pago,
+        estado_pago,
+        observaciones,
+        documentos
+    )
+    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+    """
+
+    valores = (
+        nombre,
+        dui,
+        telefono,
+        correo,
+        tipo_seguro,
+        fecha_pago,
+        estado_pago,
+        observaciones,
+        documentos
+    )
+
+    try:
+        cursor.execute(query, valores)
+        conexion.commit()
+        return True
+    except Exception as e:
+        return False
+    finally:
+        cursor.close()
+        conexion.close()

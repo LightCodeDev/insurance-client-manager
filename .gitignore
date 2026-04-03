@@ -1,0 +1,15 @@
+# VSCode
+.vscode/
+
+# Variables de entorno
+.env
+
+# Python
+__pycache__/
+*.pyc
+
+# Archivos del sistema
+.DS_Store
+
+#
+.env
