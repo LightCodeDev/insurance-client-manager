@@ -25,7 +25,7 @@ def crear_tabla_clientes():
         fecha_pago DATE,
         estado_pago VARCHAR(20),
         observaciones TEXT,
-        documentos,         
+        documentos TEXT,         
         fecha_registro DATE DEFAULT CURRENT_DATE
     )
     """)
