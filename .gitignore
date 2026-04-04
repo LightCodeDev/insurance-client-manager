@@ -5,14 +5,9 @@
 .env
 
 # Python
+venv/
 __pycache__/
 *.pyc
 
 # Archivos del sistema
 .DS_Store
-
-#
-.env
-
-venv/
-__pycache__/
