@@ -7,8 +7,9 @@ def conectar_db():
         user=DB_USER,
         password=DB_PASSWORD,
         database=DB_NAME
-     )
+    )
     return conexion
+
 
 def crear_tabla_clientes():
     conexion = conectar_db()
@@ -25,7 +26,7 @@ def crear_tabla_clientes():
         fecha_pago DATE,
         estado_pago VARCHAR(20),
         observaciones TEXT,
-        documentos TEXT,         
+        documentos TEXT,
         fecha_registro DATE DEFAULT CURRENT_DATE
     )
     """)
@@ -33,6 +34,7 @@ def crear_tabla_clientes():
     conexion.commit()
     cursor.close()
     conexion.close()
+
 
 def insertar_cliente(nombre, dui, telefono, correo, tipo_seguro, fecha_pago, estado_pago, observaciones, documentos):
     conexion = conectar_db()
@@ -74,3 +76,17 @@ def insertar_cliente(nombre, dui, telefono, correo, tipo_seguro, fecha_pago, est
     finally:
         cursor.close()
         conexion.close()
+
+
+def obtener_clientes():
+    conexion = conectar_db()
+    cursor = conexion.cursor()
+
+    query = "SELECT * FROM clientes"
+    cursor.execute(query)
+    clientes = cursor.fetchall()
+
+    cursor.close()
+    conexion.close()
+
+    return clientes
