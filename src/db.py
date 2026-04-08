@@ -90,3 +90,16 @@ def obtener_clientes():
     conexion.close()
 
     return clientes
+
+def obtener_cliente_por_id(id_cliente):
+    conexion = conectar_db()
+    cursor = conexion.cursor()
+
+    query = "SELECT * FROM clientes WHERE id = %s"
+    cursor.execute(query, (id_cliente,))
+    cliente = cursor.fetchone()
+
+    cursor.close()
+    conexion.close()
+    
+    return cliente
