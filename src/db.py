@@ -103,3 +103,16 @@ def obtener_cliente_por_id(id_cliente):
     conexion.close()
     
     return cliente
+
+def obtener_clientes_por_nombre(nombre):
+    conexion = conectar_db()
+    cursor = conexion.cursor()
+
+    query = "SELECT * FROM clientes WHERE nombre LIKE %s"
+    cursor.execute(query, (f"%{nombre}%",))
+    clientes = cursor.fetchall()
+
+    cursor.close()
+    conexion.close()
+
+    return clientes

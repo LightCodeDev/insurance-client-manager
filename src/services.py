@@ -1,7 +1,5 @@
-from db import insertar_cliente
+from db import insertar_cliente, obtener_clientes_por_nombre, obtener_clientes, obtener_cliente_por_id
 from config import TIPOS_SEGURO, ESTADOS_PAGO
-from db import obtener_clientes
-from db import obtener_cliente_por_id
 
 def registrar_cliente(nombre, dui, telefono, correo, tipo_seguro, fecha_pago, estado_pago, observaciones, documentos):
 
@@ -72,3 +70,11 @@ def buscar_cliente_por_id(id_cliente):
         return True, cliente
     else:
         return False, "Cliente no encontrado."
+    
+def buscar_clientes_por_nombre(nombre):
+        clientes = obtener_clientes_por_nombre(nombre)
+
+        if len(clientes) > 0:
+            return True, clientes
+        else:
+            return False, "No se encontraron clientes."

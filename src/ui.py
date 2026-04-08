@@ -53,7 +53,7 @@ def pedir_id_cliente():
             return int(id_cliente)
         
 def mostrar_cliente(cliente):
-    
+
     if not cliente:
         print("ID no valido")
         return
@@ -72,3 +72,12 @@ def mostrar_cliente(cliente):
     print(f"Documentos: {documentos if documentos else 'Sin documentos'}")
     print(f"Registro: {fecha_registro}")
     print("-" * 40)
+
+def pedir_nombre_busqueda():
+    while True:
+        nombre = input("Introduzca nombre: ").strip()
+
+        if not nombre:
+            print("Respuesta inválida.")
+        else:
+            return nombre
